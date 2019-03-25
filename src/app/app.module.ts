@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
@@ -12,6 +13,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { CameraPreview } from '@ionic-native/camera-preview';
+// import { HTTP } from '@ionic-native/http';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { CameraPreview } from '@ionic-native/camera-preview';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -36,6 +40,7 @@ import { CameraPreview } from '@ionic-native/camera-preview';
   providers: [
     StatusBar,
     SplashScreen,
+    // HTTP,
     Camera,
     CameraPreview,
     { provide: ErrorHandler, useClass: IonicErrorHandler }

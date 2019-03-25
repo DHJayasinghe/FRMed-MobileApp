@@ -5,20 +5,10 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-row class="center">
-    <ion-col width-50>
-      <button ion-button (click)="getPicture(1)">Show Camera</button>
-    </ion-col>
-    <ion-col width-50>
-      <button ion-button (click)="getPicture(0)">Show Album</button>
-    </ion-col>
-  </ion-row>
-
-  <ion-item class="no-border">
+  <!--<ion-item class="no-border">
     <ion-label>Return image file URI</ion-label>
     <ion-toggle energized [(ngModel)]="useURI"></ion-toggle>
-  </ion-item>
-
+  </ion-item>-->
   <ion-card>
     <img [src]="imageData" *ngIf="imageData" />
     <ion-card-content>
@@ -38,4 +28,15 @@
       </p>
     </ion-card-content>
   </ion-card>
+  <ion-row class="center">
+    <ion-col width-50>
+      <button ion-button (click)="getPicture(1)"><ion-icon name="camera"></ion-icon></button>
+    </ion-col>
+    <ion-col width-50>
+      <button ion-button *ngIf="showIdBtn" (click)="sendPostRequest()"><ion-icon name="search"></ion-icon>&nbsp;Search</button>
+    </ion-col>
+    <!--<ion-col width-50>
+      <button ion-button (click)="getPicture(0)">Show Album</button>
+    </ion-col>-->
+  </ion-row>
 </ion-content>
