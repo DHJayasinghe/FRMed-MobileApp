@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Patient Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-card>
+    <img src="https://ionicframework.com/docs/v3/dist/preview-app/www/assets/img/card-saopaolo.png"/>
+    <div class="card-title">{{profile['FullName']}}</div>
+    <div class="card-subtitle">{{profile['PHN']}}</div>
+  </ion-card>
+  <ion-list>
+    <ion-item>
+      <ion-label>Full Name:</ion-label>
+      <div item-content>{{profile['FullName']}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Gender:</ion-label>
+      <div item-content>{{profile['Gender']}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date of Birth:</ion-label>
+      <div item-content>{{profile['DateOfBirth']}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Civil Status:</ion-label>
+      <div item-content>{{profile['PersonalTitle']}}</div>
+    </ion-item>
+    <ion-item-divider class="center">
+      Medical Records
+    </ion-item-divider>
+    <button ion-item detail-push>
+       Medical History
+    </button>
+    <button ion-item detail-push>
+       Allergic History
+    </button>
+    <button ion-item detail-push>
+       Laboratory History
+    </button>
+    <!--<ion-item-sliding>
+      <ion-item detail-push>
+        Laboratory History
+      </ion-item>
+      <ion-item-options>
+        <button ion-button color="primary" (click)="archive()">View</button>
+      </ion-item-options>
+    </ion-item-sliding>-->
+  </ion-list>
+</ion-content>

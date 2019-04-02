@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Camera</ion-title>
+    <ion-title>Face Scanner</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
   </ion-item>-->
   <ion-card>
     <img [src]="imageData" *ngIf="imageData" />
-    <ion-card-content>
+    <!--<ion-card-content>
       <ion-card-title>
         <div *ngIf="useURI">
           Using URI
@@ -26,17 +26,12 @@
       <p *ngIf="!useURI">
         Your Base64 image has {{ (imageData + '').length }} bytes
       </p>
-    </ion-card-content>
+    </ion-card-content>-->
   </ion-card>
-  <ion-row class="center">
-    <ion-col width-50>
-      <button ion-button (click)="getPicture(1)"><ion-icon name="camera"></ion-icon></button>
-    </ion-col>
-    <ion-col width-50>
-      <button ion-button *ngIf="showIdBtn" (click)="sendPostRequest()"><ion-icon name="search"></ion-icon>&nbsp;Search</button>
-    </ion-col>
-    <!--<ion-col width-50>
-      <button ion-button (click)="getPicture(0)">Show Album</button>
-    </ion-col>-->
-  </ion-row>
+  <ion-fab bottom right>
+    <button ion-fab mini (click)="getPicture(1)"><ion-icon name="md-camera"></ion-icon></button>
+  </ion-fab>
+  <ion-fab bottom left *ngIf="showIdBtn">
+    <button ion-fab mini (click)="sendPostRequest()"><ion-icon name="md-search"></ion-icon></button>
+  </ion-fab>
 </ion-content>

@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform, LoadingController, ToastController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera'
-// import { HTTP } from '@ionic-native/http';
-import { HttpClient } from '@angular/common/http';
+import { FRMedApi } from '../../shared/shared';
+import { ProfileDetailsPage } from '../profile-details/profile-details';
 
 @Component({
   selector: 'page-home',
@@ -13,8 +13,15 @@ export class HomePage {
   public showIdBtn: boolean = false;
   @Input('useURI') useURI: Boolean = false; //use base64
 
-  constructor(private camera: Camera, public navCtrl: NavController, private http: HttpClient) {
+  profile: any = {};
 
+  constructor(public navCtrl: NavController, private camera: Camera, private frmedApi: FRMedApi,
+    private plt: Platform, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+
+  }
+
+  openDetails(params) {
+    this.navCtrl.push(ProfileDetailsPage, params);
   }
 
   getPicture(sourceType) {
@@ -41,19 +48,41 @@ export class HomePage {
     });
   }
 
+  ionViewDidLoad() {
+    console.log('view loaded');
+    this.plt.ready().then((readySource) => {
+      console.log('Platform ready from', readySource);
+      // Platform now ready, execute any required native code
+      // this.getPicture(1);
+    });
+  }
+
   sendPostRequest() {
-    let postData = {
-      "FrontalFace": this.imageData,
-      "email": "customer004@email.com"
-    };
-    this.http
-      .post('http://192.168.1.3:5001/frec/api/identify', postData,
-        { headers: { 'Content-Type': 'application/json; charset=utf-8' } })
-      .subscribe(data => {
-        console.log("POST Request is successful ", data);
-      }, error => {
-        console.log("Error", error);
-      }
-      );
+    let loading = this.loadingCtrl.create({
+      content: 'searching for matching face prfoile...'
+    });
+    loading.present();
+
+    this.frmedApi.getPatientDetails(this.imageData)
+      .then(data => {
+        console.log(data);
+        console.log(data['code']);
+        if (data['code'] == 200) {
+          loading.dismiss();
+          this.profile = data['data'];
+          this.navCtrl.push(ProfileDetailsPage,{'profile':this.profile});
+        }else{
+          loading.dismiss();
+          this.presentToast("Unable to connect to the server");
+        }
+      });
+  }
+
+  async presentToast(toastMessage: string) {
+    const toast = await this.toastCtrl.create({
+      message: toastMessage,
+      duration: 3000
+    });
+    toast.present();
   }
 }
