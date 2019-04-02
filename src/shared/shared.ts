@@ -1,0 +1,1 @@
+export * from './frmed-api.service';

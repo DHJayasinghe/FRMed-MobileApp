@@ -8,17 +8,19 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
+import { FRMedApi } from '../shared/frmed-api.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { CameraPreview } from '@ionic-native/camera-preview';
-// import { HTTP } from '@ionic-native/http';
 
 
 @NgModule({
   declarations: [
     MyApp,
+    ProfileDetailsPage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -26,12 +28,13 @@ import { CameraPreview } from '@ionic-native/camera-preview';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    HttpClientModule, //HTTP Client module
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    ProfileDetailsPage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -40,7 +43,7 @@ import { CameraPreview } from '@ionic-native/camera-preview';
   providers: [
     StatusBar,
     SplashScreen,
-    // HTTP,
+    FRMedApi, //FRMed API (Face Recognition API)
     Camera,
     CameraPreview,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
