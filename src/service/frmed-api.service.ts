@@ -13,12 +13,10 @@ export class FRMedApi {
                 { "FrontalFace": imageUri },
                 { headers: { 'Content-Type': 'application/json; charset=utf-8' } })
                 .subscribe(data => {
-                    console.log("POST Request is successful ", data);
-                    console.log(data['FullName']);
-                    resolve({ code: 200, data: data });
+                    resolve(data);
                 }, error => {
                     console.log("Error", error);
-                    resolve({ code: 500, data: error });
+                    resolve({ code: 500, text: error });
                 });
         })
     }

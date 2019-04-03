@@ -1,11 +1,31 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Register Patient
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <form [formGroup]="todo" (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>First Name</ion-label>
+      <ion-input type="text" formControlName="firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Last Name</ion-label>
+      <ion-input type="text" formControlName="lastName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select formControlName="gender">
+        <ion-option [value]="gender.value" *ngFor="let gender of genderList">{{gender.text}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <button ion-button type="submit" block [disabled]="!todo.valid">Add Todo</button>
+  </form>
 </ion-content>

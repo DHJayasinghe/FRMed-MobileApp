@@ -6,7 +6,7 @@
 
 <ion-content class="card-background-page">
   <ion-card>
-    <img src="https://ionicframework.com/docs/v3/dist/preview-app/www/assets/img/card-saopaolo.png"/>
+    <img [src]="imageData" *ngIf="imageData" />
     <div class="card-title">{{profile['FullName']}}</div>
     <div class="card-subtitle">{{profile['PHN']}}</div>
   </ion-card>
@@ -31,13 +31,13 @@
       Medical Records
     </ion-item-divider>
     <button ion-item detail-push>
-       Medical History
+      Medical History
     </button>
     <button ion-item detail-push>
-       Allergic History
+      Allergic History
     </button>
     <button ion-item detail-push>
-       Laboratory History
+      Laboratory History
     </button>
     <!--<ion-item-sliding>
       <ion-item detail-push>

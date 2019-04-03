@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NavController, Platform, LoadingController, ToastController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera'
-import { FRMedApi } from '../../shared/shared';
+import { FRMedApi } from '../../service/service';
 import { ProfileDetailsPage } from '../profile-details/profile-details';
 
 @Component({
@@ -65,15 +65,14 @@ export class HomePage {
 
     this.frmedApi.getPatientDetails(this.imageData)
       .then(data => {
-        console.log(data);
-        console.log(data['code']);
+        console.log(JSON.stringify(data));
+        loading.dismiss();
+
         if (data['code'] == 200) {
-          loading.dismiss();
           this.profile = data['data'];
-          this.navCtrl.push(ProfileDetailsPage,{'profile':this.profile});
-        }else{
-          loading.dismiss();
-          this.presentToast("Unable to connect to the server");
+          this.navCtrl.push(ProfileDetailsPage, { 'profile': this.profile });
+        } else {
+          this.presentToast(data['text']);
         }
       });
   }

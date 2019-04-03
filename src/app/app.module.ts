@@ -9,7 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
-import { FRMedApi } from '../shared/frmed-api.service';
+import { FRMedApi } from '../service/frmed-api.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
