@@ -16,7 +16,7 @@ export class HomePage {
   profile: any = {};
 
   constructor(public navCtrl: NavController, private camera: Camera, private frmedApi: FRMedApi,
-    private plt: Platform, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+    private plt: Platform, private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
 
   }
 

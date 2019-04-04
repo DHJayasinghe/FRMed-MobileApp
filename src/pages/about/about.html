@@ -8,6 +8,23 @@
 
 <ion-content padding>
   <form [formGroup]="todo" (ngSubmit)="logForm()">
+    <ion-card>
+      <div class="img-holder">
+        <img src="../../assets/imgs/avatar_placeholder.svg" *ngIf="!imageData">
+        <img [src]="imageData" *ngIf="imageData" />
+        <button ion-button class="link" (click)="getPicture(1)"><ion-icon name="md-camera"></ion-icon></button>
+      </div>
+    </ion-card>
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-select formControlName="title">
+          <ion-option value="Mr">Mr</ion-option>
+          <ion-option value="Mrs">Mrs</ion-option>
+          <ion-option value="Miss">Miss</ion-option>
+          <option value="Ms">Ms</option>
+          <option value="Ms">Ms</option>
+        </ion-select>
+    </ion-item>
     <ion-item>
       <ion-label>First Name</ion-label>
       <ion-input type="text" formControlName="firstName"></ion-input>
@@ -19,13 +36,23 @@
     <ion-item>
       <ion-label>Gender</ion-label>
       <ion-select formControlName="gender">
-        <ion-option [value]="gender.value" *ngFor="let gender of genderList">{{gender.text}}</ion-option>
+        <ion-option value="M">Male</ion-option>
+        <ion-option value="F">Female</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Marital Status</ion-label>
+      <ion-select formControlName="civilStatus">
+        <ion-option value="Married">Married</ion-option>
+        <ion-option value="Single">Single</ion-option>
+        <ion-option value="Divorced">Divorced</ion-option>
+        <option value="Widowed">Widowed</option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Description</ion-label>
       <ion-textarea formControlName="description"></ion-textarea>
     </ion-item>
-    <button ion-button type="submit" block [disabled]="!todo.valid">Add Todo</button>
+    <button ion-button type="submit" block [disabled]="!todo.valid || !imageData">Register</button>
   </form>
 </ion-content>
