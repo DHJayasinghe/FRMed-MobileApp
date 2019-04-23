@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { LabHistoryPage } from '../lab-history/lab-history';
+import { MedicalHistoryPage } from '../medical-history/medical-history';
 
 @Component({
     selector: 'page-profile-details',
@@ -8,27 +10,18 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 export class ProfileDetailsPage {
     profile: any;
     public imageData: string;
-    constructor(public navCtrl: NavController,
-        public navParams: NavParams, public loadingCtrl: LoadingController) {
-        let profile_param = navParams.get('profile');
-        this.profile = profile_param;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        this.profile = navParams.get('profile');
         this.imageData = "data:image/jpeg;base64," + this.profile['FaceImage'];
     }
 
-    ionViewWillEnter() {
-        this.getQuestions();
+    getMedicalHistory() {
+        this.navCtrl.push(MedicalHistoryPage, { 'diagnoses': this.profile["MedicalHistory"] });
     }
 
-    getQuestions() {
-        // let loading = this.loadingCtrl.create({
-        //   content: 'Please wait...'
-        // });
-        // loading.present();
-        // this.questionService.getQuestionsBySlug(this.category.slug)
-        // .then(res => {
-        //   this.questions = res;
-        //   loading.dismiss();
-        // })
+    getLabHistory() {
+        this.navCtrl.push(LabHistoryPage, { 'diagnoses': this.profile["LabHistory"] });
     }
 }
 

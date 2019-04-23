@@ -9,22 +9,30 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ProfileDetailsPage } from '../pages/profile-details/profile-details';
+import { LabHistoryPage } from '../pages/lab-history/lab-history';
 import { FRMedApi } from '../service/frmed-api.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { CameraPreview } from '@ionic-native/camera-preview';
+import { SortPipe } from '../pipes/sort/sort';
+import { SearchPipe } from '../pipes/search/search';
+import { MedicalHistoryPage } from '../pages/medical-history/medical-history';
 
 
 @NgModule({
   declarations: [
     MyApp,
+    LabHistoryPage,
+    MedicalHistoryPage,
     ProfileDetailsPage,
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    SearchPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -34,6 +42,8 @@ import { CameraPreview } from '@ionic-native/camera-preview';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LabHistoryPage,
+    MedicalHistoryPage,
     ProfileDetailsPage,
     AboutPage,
     ContactPage,

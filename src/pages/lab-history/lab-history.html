@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Laboratory Diagnosis</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-toolbar>
+      <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+      <ion-buttons end>
+        <button ion-button item-right (click)="sort()"><ion-icon name="funnel"></ion-icon></button>
+      </ion-buttons>
+    </ion-toolbar>
+  <ion-list>
+    <!-- <ion-list-header>
+      Diagnosis History
+    </ion-list-header> -->
+    <ion-item *ngFor="let diagnosis of lab_history | search : terms | sort: {property: column, order: order}">
+      <ion-label>{{diagnosis["Name"]}} :</ion-label>
+      <div item-content>{{diagnosis["Value"]}} {{diagnosis["Unit"]}}</div>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -30,14 +30,14 @@
     <ion-item-divider class="center">
       Medical Records
     </ion-item-divider>
-    <button ion-item detail-push>
+    <button ion-item detail-push (click)="getMedicalHistory()">
       Medical History
+    </button>
+    <button ion-item detail-push (click)="getLabHistory()">
+      Laboratory History
     </button>
     <button ion-item detail-push>
       Allergic History
-    </button>
-    <button ion-item detail-push>
-      Laboratory History
     </button>
     <!--<ion-item-sliding>
       <ion-item detail-push>

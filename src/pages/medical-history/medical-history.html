@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Medical Diagnosis</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-toolbar>
+      <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+      <ion-buttons end>
+        <button ion-button item-right (click)="sort()"><ion-icon name="funnel"></ion-icon></button>
+      </ion-buttons>
+    </ion-toolbar>
+  <ion-list>
+    <ion-list-header>
+      Medical History
+    </ion-list-header>
+    <ion-item *ngFor="let diagnosis of medical_history | search : terms | sort: {property: column, order: order}">
+      <ion-label>{{diagnosis["Description"]}} :</ion-label>
+      <div item-content>{{diagnosis["Code"]}}</div>
+    </ion-item>
+  </ion-list>
+</ion-content>

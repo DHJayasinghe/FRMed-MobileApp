@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class FRMedApi {
-    private baseUrl = "http://localhost:5001/frec/api";
+    private baseUrl = "http://192.168.1.101:5001/frmed/api";
 
     constructor(private http: HttpClient) { }
 
@@ -16,7 +16,7 @@ export class FRMedApi {
                     resolve(data);
                 }, error => {
                     console.log("Error", error);
-                    resolve({ code: 500, text: error });
+                    resolve({ code: 500, text: error["message"] });
                 });
         });
     }
